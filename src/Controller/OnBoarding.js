@@ -1,9 +1,9 @@
 const axios = require("axios");
 
 exports.createAccount = async (req, res, next) => {
-  console.log(req.body)
+const {article} = req.body  
   await axios
-    .post(`https://developers.bybrisk.com/account`, req.body)
+    .post(`https://developers.bybrisk.com/account`, article)
     .then((response) => {
       console.log(response);
       return res.status(200).send(response.data);

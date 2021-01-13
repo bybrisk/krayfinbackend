@@ -1,6 +1,5 @@
 const axios = require("axios");
 exports.fetchAgents = async (req, res, next) => {
-  console.log(req.query.bybid)
   let data = await axios({
     url: `https://developers.bybrisk.com/agents/all/${req.query.bybid}`,
     method: "GET"

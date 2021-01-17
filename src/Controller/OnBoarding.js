@@ -13,6 +13,7 @@ const {article} = req.body
       res.status(422).send(e)});
 };
 exports.updateAccount = async (req, res, next) => {
+  console.log(req.body)
  await axios
     .post(`https://developers.bybrisk.com/accountUpdate`,req.body)
     .then((response) => {
@@ -25,9 +26,20 @@ exports.updateAccount = async (req, res, next) => {
 };
 exports.updatePassword = async (req, res, next) => {
   axios
-    .post(`https://developers.bybrisk.com/accountUpdate/password`,req.body)
+    .post(`https://developers.bybrisk.com/accountUpdate/password`,req.body.newDetails)
     .then((response) => {
       return res.status(200).send(response.data);
     })
-    .catch((e) => res.status(422).send(e));
+    .catch((e) => {
+      console.log(e)
+      return res.status(422).send(e)});
+};
+
+
+exports.fetchAccount = async (req, res, next) => {
+  let data = await axios({
+    url: `https://developers.bybrisk.com/account/${req.query.id}`,
+    method: "GET"
+  });
+  return res.status(200).send(data.data);
 };

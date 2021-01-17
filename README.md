@@ -19,3 +19,7 @@
 - Delete a message with:
   - URL: http://localhost:3000/messages/1
   - Method: DELETE
+
+darkolivegreen
+goldenrod
+cornflowerblue

@@ -26,12 +26,12 @@ exports.fetchAgentDetails = async (req, res, next) => {
 
 exports.modifyAgents = async (req, res, next) => {
   console.log(req.body)
+  const { article } = req.body;
 
   axios
-    .post(`https://developers.bybrisk.com/agents/update`,req.body)
+    .post(`https://developers.bybrisk.com/agents/update`,article)
     .then((response) => {
-      console.log(response);
-      return response;
+      return res.status(200).send(response.data);
     }).catch(e=>console.log(e));
 };
 
@@ -44,11 +44,10 @@ exports.delteAgent = async (req, res, next) => {
 };
 
 exports.addAgent = async (req, res, next) => {
-  // const { agentdetails } = req.body;
+  const { article } = req.body;
   console.log(req.body)
-  await axios.post('https://developers.bybrisk.com/agents/create',req.body)
+  await axios.post('https://developers.bybrisk.com/agents/create',article)
   .then(response=>{
-    console.log(response)
     return res.status(200).send(response.data);
   })
   .catch(e=>console.log(e))

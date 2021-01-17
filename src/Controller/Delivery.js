@@ -30,3 +30,24 @@ exports.getDeliveryDetails = async (req, res, next) => {
 //   })
 //   .catch(e=>res.status(422).send(e));
 // };
+exports.getDeliveries = async (req, res, next) => {
+  let data = await axios({
+    url: `https://developers.bybrisk.com/delivery/all/${req.query.bybid}`,
+    method: "GET"
+  });
+  return res.status(200).send(data.data);
+};
+
+exports.modifyStatus = async (req, res, next) => {
+const {param} = req.body
+console.log(req.body)
+  axios
+    .post(`https://developers.bybrisk.com/delivery/update/status`,param)
+    .then((response) => {
+      console.log(response);
+      return res.status(200).send(response.data);
+    })
+    .catch((e) => {
+      console.log(e)
+      return res.status(422).send(e)});
+};

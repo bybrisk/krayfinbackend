@@ -5,7 +5,6 @@ console.log(req.body)
   axios
     .post(`https://developers.bybrisk.com/delivery/create/be`,req.body)
     .then((response) => {
-      console.log(response);
       return res.status(200).send(response.data);
     })
     .catch((e) => {
@@ -34,7 +33,6 @@ exports.getDeliveries = async (req, res, next) => {
     url: `https://developers.bybrisk.com/delivery/all/${req.query.bybid}`,
     method: "GET"
   });
-  console.log(data);
   return res.status(200).send(data.data);
 };
 
@@ -44,7 +42,6 @@ console.log(req.body)
   axios
     .post(`https://developers.bybrisk.com/delivery/update/status`,req.body)
     .then((response) => {
-      console.log(response);
       return res.status(200).send(response.data);
     })
     .catch((e) => {

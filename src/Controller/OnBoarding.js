@@ -49,6 +49,7 @@ exports.fetchAccount = async (req, res, next) => {
     url: `https://developers.bybrisk.com/account/${req.cookies.bybriskAuthorization}`,
     method: "GET"
   })
+  console.log(data.data)
 if(data.data==="" || data.data===null){
  return res.status(401).send("error in fetching data")
 }
@@ -87,7 +88,7 @@ exports.loginAccount = async (req ,res, next) =>{
       res.cookie('bybriskAuthorization',bybid, {
         maxAge: 12*24*60 * 60 * 1000, // 12 days hour
         httpOnly: true,
-        // secure: true,
+        secure: true,
         sameSite: true,
       })
       console.log(data.data,"--------------data")

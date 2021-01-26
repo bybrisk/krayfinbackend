@@ -10,6 +10,7 @@ exports.createAccount = async (req, res, next) => {
         maxAge: 12*24*60 * 60 * 1000, // 12 days
         httpOnly: true,
         sameSite: true,
+        secure: true
       })
       console.log(res,"===================res")
       return res.status(200).send(response.data);

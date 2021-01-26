@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 5000;
 const cors = require("cors");
 const path = require("path");
 app.enable("trust proxy");
-app.use(cors({credentials: true,origin:'https://maps.bybrisk.com'}))
+app.use(cors({credentials: true,origin:'http://localhost:3000'}))
 
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin',req.headers.origin);

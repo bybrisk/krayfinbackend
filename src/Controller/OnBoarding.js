@@ -9,7 +9,7 @@ exports.createAccount = async (req, res, next) => {
       res.cookie('bybriskAuthorization',response.data.bybID, {
         maxAge: 12*24*60 * 60 * 1000, // 12 days
         httpOnly: true,
-        sameSite: true,
+        sameSite: false,
         secure: true
       })
       console.log(res,"===================res")
@@ -89,7 +89,7 @@ exports.loginAccount = async (req ,res, next) =>{
         maxAge: 12*24*60 * 60 * 1000, // 12 days hour
         httpOnly: true,
         secure: true,
-        sameSite: true,
+        sameSite: false,
       })
       console.log(data.data,"--------------data")
       return res.status(200).json({user:data.data,bybid:bybid});  

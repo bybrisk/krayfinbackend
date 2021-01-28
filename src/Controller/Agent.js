@@ -29,8 +29,11 @@ exports.modifyAgents = async (req, res, next) => {
   axios
     .post(`https://developers.bybrisk.com/agents/update`,req.body)
     .then((response) => {
+      
       return res.status(200).send(response.data);
-    }).catch(e=>console.log(e));
+    }).catch(e=>{console.log(e.response.data,"--------------------------------------------")
+    return res.status(401).send(e)
+    });
 };
 
 exports.delteAgent = async (req, res, next) => {

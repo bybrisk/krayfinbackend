@@ -17,7 +17,7 @@ exports.createAccount = async (req, res, next) => {
     })
     .catch((e) =>{
       console.log(e);
-      res.status(422).send(e)});
+      res.status(401).send(e)});
 };
 exports.updateAccount = async (req, res, next) => {
   console.log(req.body)
@@ -44,9 +44,9 @@ exports.updatePassword = async (req, res, next) => {
 
 
 exports.fetchAccount = async (req, res, next) => {
-  console.log(req.cookies,"---------------")
+  console.log(req.query.bybId,"---------------")
   let data = await axios({
-    url: `https://developers.bybrisk.com/account/${req.cookies.bybriskAuthorization}`,
+    url: `https://developers.bybrisk.com/account/${req.query.bybId}`,
     method: "GET"
   })
   console.log(data.data)
@@ -69,30 +69,34 @@ exports.isUsernameAvailable = async (req, res, next) => {
 
 exports.loginAccount = async (req ,res, next) =>{
   console.log(req.body)
-  let bybid;
+  let bybID;
   await axios
     .post(`https://developers.bybrisk.com/account/getBybID`,req.body)
     .then((response) => {
       console.log(response.data)
-      bybid = response.data.bybID
+      if(response.data.bybID==="Denied"){
+        return res.status(401).json({error:"Password or Email is Invalid"});  
+      }
+      bybID = response.data.bybID
     })
     .catch((e) => {
       console.log(e)
       return res.status(422).send(e)});
       //getting account details
-      console.log(bybid)
+      console.log(bybID)
       let data = await axios({
-        url: `https://developers.bybrisk.com/account/${bybid}`,
+        url: `https://developers.bybrisk.com/account/${bybID}`,
         method: "GET"
       });
-      res.cookie('bybriskAuthorization',bybid, {
+      res.cookie('bybriskAuthorization',bybID, {
         maxAge: 12*24*60 * 60 * 1000, // 12 days hour
         httpOnly: true,
         secure: true,
         sameSite: false,
       })
+
       console.log(data.data,"--------------data")
-      return res.status(200).json({user:data.data,bybid:bybid});  
+      return res.status(200).json({user:data.data,bybID:bybID});  
     };
 
 

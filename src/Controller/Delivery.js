@@ -5,6 +5,7 @@ console.log(req.body)
   axios
     .post(`https://developers.bybrisk.com/delivery/create/be`,req.body)
     .then((response) => {
+      console.log(response.data)
       return res.status(200).send(response.data);
     })
     .catch((e) => {

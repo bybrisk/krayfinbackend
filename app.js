@@ -28,6 +28,7 @@ app.use("/", routes.Agent);
 app.use("/onboarding", routes.onBoarding);
 app.use("/agents", routes.Agent);
 app.use("/delivery", routes.Delivery);
+app.use("/clusters", routes.Clusters);
 
 
 app.listen(process.env.PORT, () =>

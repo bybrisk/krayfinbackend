@@ -28,3 +28,16 @@ exports.getDeliveryofClusters = async (req, res, next) => {
         return res.status(201).send(error)
     }
   };
+
+exports.createCluster = async(req,res,next) =>{
+    try{
+        await axios.post('https://developers.bybrisk.com/cluster/create',req.body)
+        .then(response=>{
+          return res.status(200).send(response.data);
+        })
+        .catch(e=>res.status(201).send(e))
+    }
+    catch (error) {
+        res.status(201).send(error)
+    }
+}

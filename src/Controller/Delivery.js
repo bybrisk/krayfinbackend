@@ -1,15 +1,12 @@
 const axios = require("axios");
 
 exports.addDelivery = async (req, res, next) => {
-console.log(req.body)
   axios
     .post(`https://developers.bybrisk.com/delivery/create/be`,req.body)
     .then((response) => {
-      console.log(response.data)
       return res.status(200).send(response.data);
     })
     .catch((e) => {
-      console.log(e)
       return res.status(422).send(e)});
 };
 exports.getDeliveryDetails = async (req, res, next) => {
@@ -39,13 +36,11 @@ exports.getDeliveries = async (req, res, next) => {
 
 exports.modifyStatus = async (req, res, next) => {
 const {param} = req.body
-console.log(req.body)
   axios
     .post(`https://developers.bybrisk.com/delivery/update/status`,req.body)
     .then((response) => {
       return res.status(200).send(response.data);
     })
     .catch((e) => {
-      console.log(e)
       return res.status(422).send(e)});
 };

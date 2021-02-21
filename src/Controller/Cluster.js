@@ -5,10 +5,10 @@ exports.fetchClusters = async (req, res, next) => {
         url: `https://developers.bybrisk.com/cluster/all/${req.query.bybid}`,
         method: "GET"
       });
-      console.log(data.data)
+      console.log(data,"data of fetch clusters")
       return res.status(200).send(data.data);  
  } catch (error) {
-     console.log(error)
+     console.log(error,"error of fetch clusters")
      return res.status(201).send(error)
  } 
 };
@@ -20,7 +20,6 @@ exports.getDeliveryofClusters = async (req, res, next) => {
             url: `https://developers.bybrisk.com/cluster/one/${req.query.clusterid}`,
             method: "GET"
           });
-          console.log(res.data)
           return res.status(200).send(data.data);
               
     } catch (error) {
@@ -35,9 +34,12 @@ exports.createCluster = async(req,res,next) =>{
         .then(response=>{
           return res.status(200).send(response.data);
         })
-        .catch(e=>res.status(201).send(e))
+        .catch(e=>{
+            console.log(e,"error of catch create clusters")
+           return res.status(201).send(e)})
     }
     catch (error) {
+        console.log(error,"error of create clusters")
         res.status(201).send(error)
     }
 }

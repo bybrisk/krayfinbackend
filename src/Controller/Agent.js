@@ -25,13 +25,12 @@ exports.fetchAgentDetails = async (req, res, next) => {
 };
 
 exports.modifyAgents = async (req, res, next) => {
-  console.log(req.body)
   axios
     .post(`https://developers.bybrisk.com/agents/update`,req.body)
     .then((response) => {
       
       return res.status(200).send(response.data);
-    }).catch(e=>{console.log(e.response.data,"--------------------------------------------")
+    }).catch(e=>{
     return res.status(401).send(e)
     });
 };
@@ -45,7 +44,6 @@ exports.delteAgent = async (req, res, next) => {
 };
 
 exports.addAgent = async (req, res, next) => {
-  console.log(req.body)
   await axios.post('https://developers.bybrisk.com/agents/create',req.body)
   .then(response=>{
     return res.status(200).send(response.data);

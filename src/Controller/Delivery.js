@@ -9,6 +9,15 @@ exports.addDelivery = async (req, res, next) => {
     .catch((e) => {
       return res.status(422).send(e)});
 };
+exports.addDeliveryWithGeocode = async (req,res,next) =>{
+  axios
+    .post(`https://developers.bybrisk.com/delivery/create/al`,req.body)
+    .then((response) => {
+      return res.status(200).send(response.data);
+    })
+    .catch((e) => {
+      return res.status(422).send(e)});
+}
 exports.getDeliveryDetails = async (req, res, next) => {
 
   const data = await axios({

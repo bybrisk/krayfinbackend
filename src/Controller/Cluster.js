@@ -29,6 +29,7 @@ exports.getDeliveryofClusters = async (req, res, next) => {
   };
 
 exports.createCluster = async(req,res,next) =>{
+    console.log(req.body,"----------bodyyyy")
     try{
         await axios.post('https://developers.bybrisk.com/cluster/create',req.body)
         .then(response=>{

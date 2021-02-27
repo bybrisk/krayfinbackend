@@ -63,7 +63,7 @@ exports.loginAccount = async (req ,res, next) =>{
     await axios
     .post(`https://developers.bybrisk.com/account/getBybID`,req.body)
     .then((response) => {
-      console.log(response.data)
+      console.log(response,"--==---==-=-=-=-==-=")
       if(response.data.bybID==="Denied"){
         return res.status(401).json({error:"Password or Email is Invalid"});  
       }

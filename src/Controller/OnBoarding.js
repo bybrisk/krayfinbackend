@@ -58,20 +58,21 @@ exports.isUsernameAvailable = async (req, res, next) => {
 };
 
 exports.loginAccount = async (req ,res, next) =>{
-  let bybID;
+  let resp;
   try {
     await axios
     .post(`https://developers.bybrisk.com/account/getBybID`,req.body)
     .then((response) => {
-      console.log(response,"--==---==-=-=-=-==-=")
-      if(response.data.bybID==="Denied"){
-        return res.status(401).json({error:"Password or Email is Invalid"});  
-      }
-      bybID = response.data.bybID
+resp = response;
     })
     .catch((e) => {
       return res.status(422).send(e)});
       //getting account details
+      if(resp.data.bybID==="Denied"){
+        return res.status(401).json({error:"Password or Email is Invalid"});  
+      }
+      console.log(resp.headers[4],resp.headers["set-cookie"],"-f--f-f-f--f-f-");
+    let bybID = resp.data.bybID
       let data = await axios({
         url: `https://developers.bybrisk.com/account/${bybID}`,
         method: "GET"
@@ -83,7 +84,7 @@ exports.loginAccount = async (req ,res, next) =>{
       //   secure: true,
       //   sameSite: false,
       // })
-
+res.header("set-cookie",resp.headers["set-cookie"]);
       return res.status(200).json({user:data.data,bybID:bybID});  
 
   } catch (error) {

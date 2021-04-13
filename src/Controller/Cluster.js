@@ -13,6 +13,20 @@ exports.fetchClusters = async (req, res, next) => {
  } 
 };
 
+exports.fetchTimeAndDistance = async (req, res, next) => {
+    try {
+       let data = await axios({
+           url: `https://developers.bybrisk.com/cluster/timeNdistance/${req.query.agentId}`,
+           method: "GET"
+         });
+         console.log(data,"data of FetchDistance time")
+         return res.status(200).send(data.data);  
+    } catch (error) {
+        console.log(error,"error of fetchDistancetime")
+        return res.status(201).send(error)
+    } 
+   };
+   
 
 exports.getDeliveryofClusters = async (req, res, next) => {
     try {

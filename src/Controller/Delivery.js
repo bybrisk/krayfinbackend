@@ -7,7 +7,7 @@ exports.addDelivery = async (req, res, next) => {
       return res.status(200).send(response.data);
     })
     .catch((e) => {
-      return res.status(422).send(e)});
+      return res.status(203).send(e)});
 };
 exports.addDeliveryWithGeocode = async (req,res,next) =>{
   axios

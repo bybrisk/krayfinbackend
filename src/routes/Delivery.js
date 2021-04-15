@@ -7,6 +7,7 @@ router.get("/deliveryDetail", deliveryCtrl.getDeliveryDetails);
 router.get("/fetchDeliveries", deliveryCtrl.getDeliveries);
 router.post("/modifyStatus", deliveryCtrl.modifyStatus);
 router.post("/addDeliveryWithGeocode", deliveryCtrl.addDeliveryWithGeocode);
+router.get("/deliveryStatus", deliveryCtrl.deliveryStatus);
 
 // router.post("/updateAccount", deliveryCtrl.updateAccount);
 // router.post("/updatePassword", deliveryCtrl.updatePassword);

@@ -53,3 +53,13 @@ const {param} = req.body
     .catch((e) => {
       return res.status(422).send(e)});
 };
+
+
+exports.deliveryStatus = async (req,res,next) =>{
+  const data = await axios({
+    url: `https://developers.bybrisk.com/analytics/delivery/status/${req.query.bybID}`,
+    method: "GET"
+  });
+  return res.status(200).send(data.data);
+}
+
